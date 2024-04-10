@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 public class Car : MonoBehaviour
 {
@@ -9,18 +11,27 @@ public class Car : MonoBehaviour
 
     private Vector3 moveDirection;
     
-    public float moveSpeed = 5.0f;
+    public float speed = 1.0f;
+    private float gravityValue = -9.81f;
+    float gravity_velocity = 0;
+
+    private float gear = 1;
+
+
+    
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         camera = gameObject.transform.GetChild(0).gameObject;
+        //vehicleSpeed = gam
     }
 
     // Update is called once per frame
     void Update()
-    {    
+    {   
+        ApplyCharacterGravity();
         moveDirection.Normalize();
-        characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+        characterController.Move(moveDirection * useAcclerationCurve() * Time.deltaTime);
     }
 
     public void AddMoveInput(float forwardInput, float rightInput) {
@@ -33,4 +44,26 @@ public class Car : MonoBehaviour
         gameObject.transform.Rotate(0,rightInput,0);
         camera.transform.rotation.SetLookRotation(gameObject.transform.forward);
     }
+
+    private void ApplyCharacterGravity() {
+        print(characterController.isGrounded);
+        
+ 
+        if(!characterController.isGrounded)
+        {
+            
+            gravity_velocity += gravityValue * Time.deltaTime;
+            print(gravity_velocity);
+            Vector3 velocityVector = new Vector3(0.0f,gravity_velocity, 0.0f);
+            characterController.Move(velocityVector);
+        }
+    }
+
+    public float useAcclerationCurve() {
+
+        speed += ((float)((double)-70 / (double)Math.Pow(2, (double)speed/(double)10)) + (float)70) * Time.deltaTime;
+        return speed;
+    }
+
+
 }
