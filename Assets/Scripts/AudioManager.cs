@@ -6,11 +6,25 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Source")]
     [SerializeField] AudioSource musicSource;
-    public AudioClip background;
+    public static AudioManager instance;
+
+    private void Awake()
+    {
+        if (instance)
+        {
+            Destroy(this);
+        }
+
+        else 
+        {
+            instance = this; 
+            DontDestroyOnLoad(this); 
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        musicSource.clip = background;
+        
         musicSource.Play();
     }
 
