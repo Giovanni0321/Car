@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Scripting.APIUpdating;
 
 
+
 public class Car : MonoBehaviour
 {
     CharacterController characterController;
@@ -16,7 +17,8 @@ public class Car : MonoBehaviour
     [SerializeField] public float topSpeed = 20;
     public float dragSpeed = 5;
 
-    private float speed = 1.0f;
+    private float speed = 0.0f;
+    private float acceleration_rate = 10;
     private float gravityValue = -9.81f;
     float gravity_velocity = 0;
 
@@ -36,14 +38,18 @@ public class Car : MonoBehaviour
     {   
         ApplyCharacterGravity();
         moveDirection.Normalize();
-        characterController.Move(moveDirection * AccelerateVehicle() * Time.deltaTime);
-        //MaintainSpeed();
+        characterController.Move(moveDirection * (speed) * Time.deltaTime);
+        print("speed: " + speed);
+        
+        MaintainSpeed();
     }
 
     public void AddMoveInput(float forwardInput, float rightInput) {
         Vector3 forward = camera.transform.forward;
         Vector3 right = camera.transform.right;
         moveDirection += (forwardInput * forward) + (rightInput * right);
+        AccelerateVehicle();
+    
 
     }
 
@@ -61,20 +67,26 @@ public class Car : MonoBehaviour
         }
     }
 
-    public float AccelerateVehicle() {
-        speed += (float)((-topSpeed /Math.Pow(2, speed/10)) + topSpeed) * Time.deltaTime;
-        return speed;
+    public void AccelerateVehicle() {
+        float current_speed = speed + 1;
+        speed += (float)((-topSpeed /Math.Pow(2, (current_speed)/acceleration_rate)) + topSpeed) * Time.deltaTime;
+        if (speed > topSpeed) {
+            speed = topSpeed;
+        }
     }
 
     public void MaintainSpeed(){ 
-         Vector3 direction;
-         Quaternion lookDirection = camera.transform.rotation;
-         float direction_x = lookDirection.x;
-         float direction_z = lookDirection.z;
-         direction = new Vector3(direction_x, 0, direction_z);
-         direction.Normalize();
-
-         speed *= 0.95f;
+        print("Speed in maintain speed: " + speed);
+        Vector3 direction;
+        Quaternion lookDirection = camera.transform.rotation;
+        float direction_x = lookDirection.x;
+        float direction_z = lookDirection.z;
+        direction = new Vector3(direction_x, 0, direction_z);
+        direction.Normalize();
+        if (speed > 50) {
+         speed -= 5f * Time.deltaTime;
+        }
+        print("Maintain Speed working");
 
 
         characterController.Move(direction * speed);
