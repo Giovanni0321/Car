@@ -7,6 +7,7 @@ public class InputHandler : MonoBehaviour
 {
     GameObject camera;
     Car car;
+    Car_Rigidbody car_Rigidbody;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,12 @@ public class InputHandler : MonoBehaviour
         
         car.AddMoveInput(forwardInput, rightInput);
         car.changeCameraDirection(rightInput);
+
+
+        //Car rigidbody methods;
+        car_Rigidbody.addForce(forwardInput);
+        car_Rigidbody.changeCameraDirection(rightInput);
+
         
     }
     
