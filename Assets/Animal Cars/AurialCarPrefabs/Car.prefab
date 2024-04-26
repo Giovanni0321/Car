@@ -260,9 +260,10 @@ GameObject:
   - component: {fileID: 1093411476749254668}
   - component: {fileID: 1093411476746387500}
   - component: {fileID: 1093411476747354860}
-  - component: {fileID: 2748168860192342037}
-  - component: {fileID: 7713906328283357847}
-  - component: {fileID: 4798175096107255134}
+  - component: {fileID: 4184001111051734900}
+  - component: {fileID: 4559029287483215461}
+  - component: {fileID: 5715719548081117588}
+  - component: {fileID: 5411783310139642399}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -343,8 +344,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!143 &2748168860192342037
-CharacterController:
+--- !u!54 &4184001111051734900
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093411476749556780}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &4559029287483215461
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -353,15 +370,11 @@ CharacterController:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.4778923
-  m_Radius: 2
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &7713906328283357847
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 6df8799e47834944c85abaf3e659049d, type: 3}
+--- !u!114 &5715719548081117588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -370,10 +383,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1093411476749556780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87241c2b8ef081e49ade3dc2f06d0891, type: 3}
+  m_Script: {fileID: 11500000, guid: 39a5c542715e39b43a97d390f38135ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4798175096107255134
+  topSpeed: 70
+  acceleration_rate: 10
+--- !u!114 &5411783310139642399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -382,10 +397,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1093411476749556780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e2020b9c859679469479b17cc32dfca, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a30631b8ae84df49bd3d39f608d3433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
 --- !u!1 &1093411476749556784
 GameObject:
   m_ObjectHideFlags: 0
