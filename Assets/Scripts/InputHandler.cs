@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class InputHandler : MonoBehaviour
 {
     GameObject camera;
     Car car;
-    // Car_Rigidbody car_Rigidbody;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         camera = gameObject.transform.GetChild(0).gameObject;
+   
         car = GetComponent<Car>();
         print(camera);
     }
@@ -27,15 +29,12 @@ public class InputHandler : MonoBehaviour
         float forwardInput = Input.GetAxis("Vertical");
         float rightInput = Input.GetAxis("Horizontal");
         
-        car.AddMoveInput(forwardInput, rightInput);
-        car.changeCameraDirection(rightInput);
-
 
         //Car rigidbody methods;
-        // car_Rigidbody.addForce(forwardInput);
-        // car_Rigidbody.changeCameraDirection(rightInput);
+        car.addForce(forwardInput);
+        car.changeCameraDirection(rightInput);
 
         
     }
-    
+
 }
