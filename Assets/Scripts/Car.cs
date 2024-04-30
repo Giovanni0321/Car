@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using System;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(MeshCollider))]
 public class Car : MonoBehaviour
@@ -29,8 +25,7 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("Car Rigidbody speed: " + speed);
-        ApplyDownwardForce();
+        //print("Car Rigidbody speed: " + speed);
     }
 
     public void addForce(float forwardInput) {
@@ -61,13 +56,28 @@ public class Car : MonoBehaviour
         return current_speed;
     }
 
-    public void ApplyDownwardForce() {
-        // rigidbody.AddForce(Vector3.down * 3);
-    }
-
     void OnCollisionEnter(Collision collision) {
         if (collision.collider.name != "player") {
             print("temp");
         }
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.transform.tag == "Wall") {
+            Quaternion currentLookDirection = gameObject.transform.rotation;
+
+
+            Vector3 oldVelocity = rigidbody.velocity;
+            Vector3 newVelocity = Vector3.Reflect(oldVelocity, other.gameObject.transform.forward.normalized);
+            newVelocity.y = 0;
+            gameObject.transform.LookAt(newVelocity.normalized);
+            camera.transform.rotation.SetLookRotation(newVelocity.normalized);
+            rigidbody.velocity = newVelocity;
+            print("Hit Wall Collider");
+            print("Original Vector: " + oldVelocity + "... New Vector: " + newVelocity);
+
+
+        }
+
     }
 }

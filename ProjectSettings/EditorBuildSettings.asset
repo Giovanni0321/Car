@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: df72006b71805784c9572f64f203553c
+  - enabled: 1
+    path: Assets/Scenes/CarSelectionScene.unity
+    guid: e24a3cd9953e2d14294906aca8cf1775
+  - enabled: 1
+    path: Assets/Scenes/JemaySampleScene.unity
+    guid: 5b8380dd2d710c2498112e6a64b60730
   m_configObjects: {}
