@@ -25,8 +25,7 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("Car Rigidbody speed: " + speed);
-        // ApplyDownwardForce();
+        //print("Car Rigidbody speed: " + speed);
     }
 
     public void addForce(float forwardInput) {
@@ -57,10 +56,6 @@ public class Car : MonoBehaviour
         return current_speed;
     }
 
-    public void ApplyDownwardForce() {
-        //rigidbody.AddForce(Vector3.down * 3);
-    }
-
     void OnCollisionEnter(Collision collision) {
         if (collision.collider.name != "player") {
             print("temp");
@@ -68,11 +63,20 @@ public class Car : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.transform.name == "Wall") {
-            Vector3 oldVelocity = rigidbody.velocity;
-            Vector3 newVelocity = oldVelocity * -1;
+        if (other.transform.tag == "Wall") {
+            Quaternion currentLookDirection = gameObject.transform.rotation;
 
-            rigidbody.AddForce(newVelocity);
+
+            Vector3 oldVelocity = rigidbody.velocity;
+            Vector3 newVelocity = Vector3.Reflect(oldVelocity, other.gameObject.transform.forward.normalized);
+            newVelocity.y = 0;
+            gameObject.transform.LookAt(newVelocity.normalized);
+            camera.transform.rotation.SetLookRotation(newVelocity.normalized);
+            rigidbody.velocity = newVelocity;
+            print("Hit Wall Collider");
+            print("Original Vector: " + oldVelocity + "... New Vector: " + newVelocity);
+
+
         }
 
     }
