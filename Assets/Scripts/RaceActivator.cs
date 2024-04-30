@@ -12,13 +12,14 @@ public class RaceActivator : MonoBehaviour
         {
             Time.timeScale = 1; 
             timer = 0.0f;
-            timer += Time.deltaTime;
         }
+        
+        timer += Time.deltaTime;
     }
 
     void OnTriggerStay(Collider col)
     {
-        if(col.gameObject.tag == "Player" && timer == 10.0f)
+        if(col.gameObject.tag == "Player" && timer >= 10.0f)
         {
             Time.timeScale = 0;
             print("Game paused");
