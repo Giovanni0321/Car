@@ -6,6 +6,13 @@ public class RaceActivator : MonoBehaviour
 {
     public float timer = 10;
 
+    public static GameObject Race;
+
+    void Start ()
+    {
+        Race = GameObject.Find("Race");
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -13,16 +20,17 @@ public class RaceActivator : MonoBehaviour
             Time.timeScale = 1; 
             timer = 0.0f;
         }
-        
+
         timer += Time.deltaTime;
     }
 
-    void OnTriggerStay(Collider col)
+    public void OnTriggerStay(Collider col)
     {
         if(col.gameObject.tag == "Player" && timer >= 10.0f)
         {
             Time.timeScale = 0;
             print("Game paused");
+            Race.SetActive(true);
         }
     }
 
@@ -35,5 +43,10 @@ public class RaceActivator : MonoBehaviour
 
         return false;
 
+    }
+
+    public void resume()
+    {
+        Race.SetActive(false); 
     }
 }
