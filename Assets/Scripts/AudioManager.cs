@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Source")]
     [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioSource fxSource;
     public static AudioManager instance;
 
     private void Awake()
@@ -32,5 +33,10 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Bell()
+    {
+        fxSource.Play();
     }
 }
