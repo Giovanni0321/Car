@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JemaySampleScene.unity
     guid: 5b8380dd2d710c2498112e6a64b60730
+  - enabled: 1
+    path: Assets/Scenes/CatScene.unity
+    guid: d5418804c0d30214893c817118ab65ac
   m_configObjects: {}
