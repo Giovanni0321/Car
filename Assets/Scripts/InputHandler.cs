@@ -37,4 +37,13 @@ public class InputHandler : MonoBehaviour
         
     }
 
+    public void pauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0; 
+            
+        }
+    }
+
 }

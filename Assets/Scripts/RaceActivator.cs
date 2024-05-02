@@ -1,21 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class RaceActivator : MonoBehaviour
 {
     public float timer = 10;
 
-    public static GameObject Race;
-
-    void Start ()
-    {
-        Race = GameObject.Find("Race");
-    }
-
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             Time.timeScale = 1; 
             timer = 0.0f;
@@ -30,7 +25,7 @@ public class RaceActivator : MonoBehaviour
         {
             Time.timeScale = 0;
             print("Game paused");
-            Race.SetActive(true);
+            SceneManager.LoadScene("RaceDecider", LoadSceneMode.Additive);
         }
     }
 
@@ -45,8 +40,4 @@ public class RaceActivator : MonoBehaviour
 
     }
 
-    public void resume()
-    {
-        Race.SetActive(false); 
-    }
 }
