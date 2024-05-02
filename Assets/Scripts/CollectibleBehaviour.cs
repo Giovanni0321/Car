@@ -7,13 +7,10 @@ using UnityEngine.Events;
 
 public class CollectibleBehaviour : MonoBehaviour
 {
-  UnityEvent collect = new UnityEvent();
+  public UnityEvent collect = new UnityEvent();
   private float speed; 
   [SerializeField] float speedIncrease = 70;
-  void Start()
-  {
-    collect.AddListener(visualEffect);
-  }
+ 
   private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -21,7 +18,7 @@ public class CollectibleBehaviour : MonoBehaviour
             Debug.Log ("The player character has touched the powerup.");
             speed = other.gameObject.GetComponent<Car>().topSpeed;
             SpeedBoost();
-            collect.Invoke();
+            Effect();
 
 
         }
@@ -37,12 +34,9 @@ public class CollectibleBehaviour : MonoBehaviour
         speed = oldSpeed;
     }
 
-    void visualEffect()
+    public void Effect()
     {
-        ParticleSystem particleSystem = GetComponentInChildren<ParticleSystem>();
-        particleSystem.Play();
-
-        gameObject.SetActive(false);
+        collect.Invoke();
     }
 }
 
