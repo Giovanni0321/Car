@@ -2,23 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class CarSelect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    
+      
     [SerializeField] public GameObject[] cars; 
     int current = 0;
+
+    // Start is called before the first frame update
     void Start()
     {
        //Next();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Back()
@@ -59,4 +55,10 @@ public class CarSelect : MonoBehaviour
         PlayerPrefs.SetInt("selectedCar",current);
         //PlayerPrefs.GetInt(selectedCar);
     }
+
+    public void putCarInScene() {
+         print("Previous Car:"+cars[current].name);
+         Instantiate(cars[current], GameObject.Find("GameObject").transform);
+    }
+
 }
