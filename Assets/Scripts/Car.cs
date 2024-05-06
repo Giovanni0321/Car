@@ -11,7 +11,7 @@ public class Car : MonoBehaviour
     float speed;
     [SerializeField] public float topSpeed = 70.0f;
     [SerializeField] float acceleration_rate = 10f;
-    [SerializeField] float handling = 10f;
+    [SerializeField] float handling = 6f;
     
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class Car : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody>();
         collider = gameObject.GetComponent<MeshCollider>();
         collider.convex = true;
-        rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         camera = gameObject.transform.GetChild(0).gameObject;
         speed = rigidbody.velocity.magnitude;
     }
@@ -28,7 +28,7 @@ public class Car : MonoBehaviour
     void Update()
     {
         //print("Car Rigidbody speed: " + speed);
-        //AddVerticalForce(-10);
+        AddVerticalForce(-2);
     }
 
     public void AddVerticalForce(float amount) {
