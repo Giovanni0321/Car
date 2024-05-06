@@ -31,7 +31,7 @@ public class InputHandler : MonoBehaviour
         
 
         //Car rigidbody methods;
-        car.addForce(forwardInput);
+        car.addForwardForce(forwardInput);
         car.changeCameraDirection(rightInput);
 
         
