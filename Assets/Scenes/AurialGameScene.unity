@@ -7951,7 +7951,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4184001111051734900, guid: dc14ba9ff17edb0459327d4f3ca51e67, type: 3}
       propertyPath: m_Constraints
-      value: 80
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559029287483215461, guid: dc14ba9ff17edb0459327d4f3ca51e67, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715719548081117588, guid: dc14ba9ff17edb0459327d4f3ca51e67, type: 3}
+      propertyPath: handling
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc14ba9ff17edb0459327d4f3ca51e67, type: 3}

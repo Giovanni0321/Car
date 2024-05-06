@@ -11,6 +11,7 @@ public class Car : MonoBehaviour
     float speed;
     [SerializeField] public float topSpeed = 70.0f;
     [SerializeField] float acceleration_rate = 10f;
+    [SerializeField] float handling = 10f;
     
     // Start is called before the first frame update
     void Start()
@@ -41,7 +42,8 @@ public class Car : MonoBehaviour
     }
 
     public void changeCameraDirection(float rightInput) { 
-        float turn_rate = rightInput/(speed * 0.5f);
+        float curr_handling = Math.Clamp(handling,0,10);
+        float turn_rate = rightInput/(speed * (1 / curr_handling));
         gameObject.transform.Rotate(0,turn_rate,0);
         camera.transform.rotation.SetLookRotation(gameObject.transform.forward);
 
