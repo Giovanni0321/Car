@@ -18,6 +18,7 @@ public class Car : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody>();
         collider = gameObject.GetComponent<MeshCollider>();
         collider.convex = true;
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         camera = gameObject.transform.GetChild(0).gameObject;
         speed = rigidbody.velocity.magnitude;
     }
