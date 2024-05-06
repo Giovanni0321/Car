@@ -10,7 +10,7 @@ public class RaceActivator : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if ()
         {
             Time.timeScale = 1; 
             timer = 0.0f;
