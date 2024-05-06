@@ -31,10 +31,19 @@ public class InputHandler : MonoBehaviour
         
 
         //Car rigidbody methods;
-        car.addForce(forwardInput);
+        car.addForwardForce(forwardInput);
         car.changeCameraDirection(rightInput);
 
         
+    }
+
+    public void pauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0; 
+            
+        }
     }
 
 }

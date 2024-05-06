@@ -11,6 +11,7 @@ public class Car : MonoBehaviour
     float speed;
     [SerializeField] public float topSpeed = 70.0f;
     [SerializeField] float acceleration_rate = 10f;
+    [SerializeField] float handling = 10f;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class Car : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody>();
         collider = gameObject.GetComponent<MeshCollider>();
         collider.convex = true;
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         camera = gameObject.transform.GetChild(0).gameObject;
         speed = rigidbody.velocity.magnitude;
     }
@@ -26,9 +28,14 @@ public class Car : MonoBehaviour
     void Update()
     {
         //print("Car Rigidbody speed: " + speed);
+        //AddVerticalForce(-10);
     }
 
-    public void addForce(float forwardInput) {
+    public void AddVerticalForce(float amount) {
+        rigidbody.AddForce(Vector3.up * amount);
+
+    }
+    public void addForwardForce(float forwardInput) {
         Vector3 forward = camera.transform.forward;
         Vector3 right = camera.transform.right;
         forward.Normalize();
@@ -40,7 +47,8 @@ public class Car : MonoBehaviour
     }
 
     public void changeCameraDirection(float rightInput) { 
-        float turn_rate = rightInput/(speed * 0.5f);
+        float curr_handling = Math.Clamp(handling,0,10);
+        float turn_rate = rightInput/(speed * (1 / curr_handling));
         gameObject.transform.Rotate(0,turn_rate,0);
         camera.transform.rotation.SetLookRotation(gameObject.transform.forward);
 
@@ -64,8 +72,6 @@ public class Car : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.transform.tag == "Wall") {
-            Quaternion currentLookDirection = gameObject.transform.rotation;
-
 
             Vector3 oldVelocity = rigidbody.velocity;
             Vector3 newVelocity = Vector3.Reflect(oldVelocity, other.gameObject.transform.forward.normalized);
@@ -76,8 +82,6 @@ public class Car : MonoBehaviour
             print("Hit Wall Collider");
             print("Original Vector: " + oldVelocity + "... New Vector: " + newVelocity);
 
-
         }
-
     }
 }
