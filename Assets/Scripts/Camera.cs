@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
+    public GameObject Camera_car;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void ManageCamera(){ 
+
     }
 }

@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CatScene.unity
     guid: d5418804c0d30214893c817118ab65ac
+  - enabled: 1
+    path: Assets/Scenes/AurialGameScene.unity
+    guid: fd7bc1c975c43204a981a634f2b0954e
   m_configObjects: {}

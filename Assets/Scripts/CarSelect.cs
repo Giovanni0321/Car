@@ -10,10 +10,12 @@ public class CarSelect : MonoBehaviour
       
     [SerializeField] public GameObject[] cars; 
     int current = 0;
+    public static GameObject global_car;
 
     // Start is called before the first frame update
     void Start()
     {
+        global_car = (GameObject)Resources.Load("Car", typeof(GameObject));
        //Next();
     }
 
@@ -31,7 +33,7 @@ public class CarSelect : MonoBehaviour
         print("Car After Clicking Back:"+cars[current].name);
         print("Current Car Index:"+current);
 
-
+        SetCar(cars[current].name);
     }
     public void Next()
     {   print("Previous Car Index:"+current);
@@ -48,6 +50,7 @@ public class CarSelect : MonoBehaviour
         print("Car After Clicking Next:"+cars[current].name);
         print("Current Car Index:"+current);
 
+        SetCar(cars[current].name);  
     }
 
     public void SelectedCar()
@@ -56,9 +59,13 @@ public class CarSelect : MonoBehaviour
         //PlayerPrefs.GetInt(selectedCar);
     }
 
-    public void putCarInScene() {
-         print("Previous Car:"+cars[current].name);
-         Instantiate(cars[current], GameObject.Find("GameObject").transform);
+    public static void PutCarInScene() {
+         Instantiate(global_car, GameObject.Find("CarSpawn").transform);
     }
 
+    public static void SetCar(string carName) {
+        print("Global Car name " + carName);
+        global_car = (GameObject)Resources.Load(carName, typeof(GameObject));
+        print("global Car: " + global_car);
+    }
 }

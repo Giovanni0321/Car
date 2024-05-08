@@ -8,6 +8,7 @@ public class InputHandler : MonoBehaviour
 {
     GameObject camera;
     Car car;
+
     
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class InputHandler : MonoBehaviour
     void Update()
     {
         HandleMoveInput();
+        spawnCar();
     }
 
     void HandleMoveInput() {
@@ -46,4 +48,9 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    public void spawnCar() {
+        if (Input.GetKeyDown(KeyCode.K)) {
+            CarSelect.PutCarInScene();
+        }
+    }
 }
