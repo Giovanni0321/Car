@@ -10,7 +10,7 @@ public class RaceActivator : MonoBehaviour
 
     void Update()
     {
-        if ()
+        if (timer == 0) //Temporary so code error in code doesn't show
         {
             Time.timeScale = 1; 
             timer = 0.0f;
