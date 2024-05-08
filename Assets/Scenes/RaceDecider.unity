@@ -516,6 +516,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadScene
       objectReference: {fileID: 0}
+    - target: {fileID: 4507421605414064168, guid: fcb38a13d1cf50e4ea06edcf24a52759, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: RaceTrack1
+      objectReference: {fileID: 0}
     - target: {fileID: 4507421605798332319, guid: fcb38a13d1cf50e4ea06edcf24a52759, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 5
